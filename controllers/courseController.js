@@ -12,7 +12,7 @@ export const getAllCourses = catchAsyncError(async (req, res, next) => {
   const courses = await Course.find({
     title: {
       $regex: keyword,
-      $optons: "i",
+      $options: "i",
     },
     category: {
       $regex: category,
