@@ -1,5 +1,9 @@
 import express from "express";
-import { authorizeAdmin, isAuthenticated } from "../middlewares/auth.js";
+import {
+  authorizeAdmin,
+  authorizeSubscribers,
+  isAuthenticated,
+} from "../middlewares/auth.js";
 import {
   buySubscription,
   cancelSubscription,
@@ -17,6 +21,8 @@ router.route("/paymentverification").post(isAuthenticated, paymentVerification);
 router.route("/razorpaykey").get(getRazorPayKey);
 
 //cancel subscription
-router.route("/subscribe/cancel").delete(isAuthenticated, cancelSubscription);
+router
+  .route("/subscribe/cancel")
+  .delete(isAuthenticated, authorizeSubscribers, cancelSubscription);
 
 export default router;

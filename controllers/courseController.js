@@ -63,7 +63,7 @@ export const addLecture = catchAsyncError(async (req, res, next) => {
   const { id } = req.params;
   const { title, description } = req.body;
   // const file = req.file;
-  const course = await Course.findById(req.params.id);
+  const course = await Course.findById(id);
   if (!course) return next(new ErrorHandler("course Not Found", 404));
   //upload files here
   const file = req.file;
